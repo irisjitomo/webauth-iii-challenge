@@ -43,15 +43,15 @@ router.post('/login', (req, res) => {
 
 
 //// Token
-function Token(user) {
+function Token(loggedUser) {
     const payload = {
-        username: user.username,
-        subject: user.subject,
-        department: user.department
+        username: loggedUser.username,
+        subject: loggedUser.subject,
+        department: loggedUser.department
     }
 
     const options = {
-        expiresIn: '2d'
+        expiresIn: '30 minutes'
     }
 
     return jwt.sign(payload, secretForToken.secret, options)
